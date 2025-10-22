@@ -9,6 +9,11 @@ RewriteRule ^(.*)$ https://www.example.com/$1 [R,L]
 # END WordPress
 
 # BEGIN XMLRPC Attacks Blocker
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/banking-details/?$ [NC]
+RewriteRule ^.*$ https://skn.co.il/contact/ [R=301,L]
+</IfModule>
 order allow,deny
 allow from all
 # END XMLRPC Attacks Blocker
@@ -72,11 +77,6 @@ RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
 <Files ".user.ini">
 <IfModule mod_authz_core.c>
 	Require all denied
-</IfModule>
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/banking-details/?$ [NC]
-RewriteRule ^.*$ https://skn.co.il/contact// [R=301,L]
 </IfModule>
 <IfModule !mod_authz_core.c>
 	Order deny,allow
